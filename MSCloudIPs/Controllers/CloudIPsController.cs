@@ -9,8 +9,13 @@ using System.Xml;
 
 namespace MSCloudIPs.Controllers
 {
+    public class CloudIPController:ApiController
+    {
+
+    }
+
     [RoutePrefix("api/azureips")]
-    public class AzureIPsController : ApiController
+    public class AzureIPsController : CloudIPController
     {
 
         /// <summary>
