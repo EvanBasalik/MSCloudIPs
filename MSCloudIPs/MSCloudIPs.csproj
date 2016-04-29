@@ -43,7 +43,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>App_Data\MSCloudIPs.XML</DocumentationFile>
+    <DocumentationFile>MSCloudIPs.XML</DocumentationFile>
     <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -269,8 +269,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\AzureIPAddresses.xml" />
-    <Content Include="App_Data\MSCloudIPs.XML">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="MSCloudIPs.XML">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="App_Data\O365IPAddresses.xml" />
     <Content Include="Areas\HelpPage\HelpPage.css" />

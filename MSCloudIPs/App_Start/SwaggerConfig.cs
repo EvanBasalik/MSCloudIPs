@@ -96,7 +96,13 @@ namespace MSCloudIPs
                         // those comments into the generated docs and UI. You can enable this by providing the path to one or
                         // more Xml comment files.
                         //
-                        c.IncludeXmlComments(string.Format(@"{0}\bin\App_Data\MSCloudIPs.XML", System.AppDomain.CurrentDomain.BaseDirectory));
+#if DEBUG
+
+                        c.IncludeXmlComments(string.Format(@"{0}bin\MSCloudIPs.XML", System.AppDomain.CurrentDomain.BaseDirectory));
+#else
+                        c.IncludeXmlComments(string.Format(@"{0}bin\MSCloudIPs.XML", System.AppDomain.CurrentDomain.BaseDirectory));
+
+#endif
 
                         // Swashbuckle makes a best attempt at generating Swagger compliant JSON schemas for the various types
                         // exposed in your API. However, there may be occasions when more control of the output is needed.
