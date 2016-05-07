@@ -9,7 +9,14 @@ using System.Xml;
 
 namespace MSCloudIPs.Controllers
 {
+    
     public class CloudIPController:ApiController
+    {
+
+    }
+
+    [RoutePrefix("api/crmonlineips")]
+    public class CRMOnlineController : CloudIPController
     {
 
     }

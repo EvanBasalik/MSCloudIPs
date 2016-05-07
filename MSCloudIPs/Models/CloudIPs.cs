@@ -10,8 +10,9 @@ namespace MSCloudIPs.Models
     public enum CloudIP_ENum
     {
         Azure = 1,
-        Office365 = 2,
-        All=3
+        CRMOnline=2,
+        Office365 = 4,
+        All=8
     }
 
     public static class MicrosoftIPs
