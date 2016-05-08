@@ -76,10 +76,18 @@ namespace XPathTest
                 //skip the first one
                 String url1;
                 XmlElement region = _result.CreateElement("region");
+                XmlAttribute regionname = _result.CreateAttribute("name");
+                regionname.Value = org.Substring(0, org.IndexOf("based organizations")).Replace(" area", "").Trim();
+                region.Attributes.Append(regionname);
+
+                //build the addresslist type attribute
+                XmlElement addressTypeNode = _result.CreateElement("addresslist");
+                XmlAttribute addressTypeName = _result.CreateAttribute("type");
+                addressTypeName.Value = "url";
+                addressTypeNode.Attributes.Append(addressTypeName);
+
                 foreach (string url0 in org.Split(new string[] { @"<br/>" }, StringSplitOptions.None).Skip(1))
                 {
-
-                    XmlAttribute regionname = _result.CreateAttribute("name");
                     if (url0.Length > 0)
                     {
                         url1 = ReplaceNonPrintableCharacters(url0);
@@ -87,19 +95,17 @@ namespace XPathTest
                         Debug.WriteLine(url1.IndexOf(@"://"));
                         if (url1.IndexOf(@"://") > 0 && url1.IndexOf(@"://") < 7)
                         {
-                            url1 = url1.Substring(url1.IndexOf("h"));
-                            regionname.Value = org.Substring(0, org.IndexOf("based organizations")).Replace(" area", "").Trim(); 
-                            region.Attributes.Append(regionname);
-                            XmlElement urlnode = _result.CreateElement("url");
-                            XmlAttribute urlname = _result.CreateAttribute("name");
-                            urlname.Value = url1;
-                            urlnode.Attributes.Append(urlname);
-                            region.AppendChild(urlnode);
-                            root.AppendChild(region);
+                            url1 = url1.Substring(url1.IndexOf("h"));                            
+                            XmlElement urlnode = _result.CreateElement("address");
+                            urlnode.InnerText = url1;
+                            addressTypeNode.AppendChild(urlnode);
+
                         }
 
                     }
                 }
+                region.AppendChild(addressTypeNode);
+                root.AppendChild(region);
             }
             return _result;
         }
@@ -111,7 +117,7 @@ namespace XPathTest
             _output = _output.Replace("&#160;", "");
             //remove stray <span> and </span>
             _output = _output.Replace("<span>", "").Replace(@"</span>", "");
-            return output;
+            return _output;
         }
 
         static string ReplaceNonPrintableCharacters(string s)
